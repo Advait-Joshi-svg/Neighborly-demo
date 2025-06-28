@@ -8,6 +8,8 @@ export type Listing = {
   bathrooms: number;
   sqft: number;
   featured?: boolean;
+  lat: number;
+  lng: number;
 };
 
 export const listings: Listing[] = [
@@ -19,7 +21,9 @@ export const listings: Listing[] = [
     bedrooms: 1,
     bathrooms: 1,
     sqft: 550,
-    featured: true
+    featured: true,
+    lat: 30.2672,
+    lng: -97.7431
   },
   {
     id: 2,
@@ -28,7 +32,9 @@ export const listings: Listing[] = [
     location: "Chicago, IL",
     bedrooms: 2,
     bathrooms: 1,
-    sqft: 850
+    sqft: 850,
+    lat: 41.8781,
+    lng: -87.6298
   },
   {
     id: 3,
@@ -38,7 +44,9 @@ export const listings: Listing[] = [
     bedrooms: 1,
     bathrooms: 1,
     sqft: 700,
-    featured: true
+    featured: true,
+    lat: 37.7749,
+    lng: -122.4194
   },
   {
     id: 4,
@@ -47,7 +55,9 @@ export const listings: Listing[] = [
     location: "Seattle, WA",
     bedrooms: 1,
     bathrooms: 1,
-    sqft: 600
+    sqft: 600,
+    lat: 47.6062,
+    lng: -122.3321
   },
   {
     id: 5,
@@ -56,7 +66,9 @@ export const listings: Listing[] = [
     location: "Denver, CO",
     bedrooms: 3,
     bathrooms: 2,
-    sqft: 1200
+    sqft: 1200,
+    lat: 39.7392,
+    lng: -104.9903
   },
   {
     id: 6,
@@ -66,7 +78,9 @@ export const listings: Listing[] = [
     bedrooms: 2,
     bathrooms: 2,
     sqft: 1100,
-    featured: true
+    featured: true,
+    lat: 40.7128,
+    lng: -74.0060
   },
   {
     id: 7,
@@ -75,7 +89,9 @@ export const listings: Listing[] = [
     location: "Portland, OR",
     bedrooms: 2,
     bathrooms: 1,
-    sqft: 950
+    sqft: 950,
+    lat: 45.5152,
+    lng: -122.6784
   },
   {
     id: 8,
@@ -84,7 +100,9 @@ export const listings: Listing[] = [
     location: "Miami, FL",
     bedrooms: 1,
     bathrooms: 1,
-    sqft: 650
+    sqft: 650,
+    lat: 25.7617,
+    lng: -80.1918
   }
 ];
 
