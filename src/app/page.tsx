@@ -1,15 +1,16 @@
 'use client';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, ChangeEvent } from 'react';
 import dynamic from 'next/dynamic';
 import { listings, type Listing } from '../data/listings';
 import Image from 'next/image';
 
-// Lazy-loaded components
-const Map = dynamic(() => import('../components/Map'), {
+// Lazy-loaded components with proper typing
+const Map = dynamic(() => import('../components/Map').then(mod => mod.default), {
   ssr: false,
   loading: () => <div className="h-96 bg-gray-100 rounded-xl animate-pulse" />
 });
-const PriceFilter = dynamic(() => import('../../components/PriceFilter'), {
+
+const PriceFilter = dynamic(() => import('../components/PriceFilter').then(mod => mod.default), {
   loading: () => (
     <div className="mb-8 bg-white p-4 rounded-xl shadow-sm">
       <div className="h-[72px] bg-gray-100 rounded animate-pulse" />
@@ -27,7 +28,7 @@ export default function HomePage() {
     );
   }, [maxPrice]);
 
-  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePriceChange = (e: ChangeEvent<HTMLInputElement>) => {
     setIsLoading(true);
     setMaxPrice(e.target.value);
     setTimeout(() => setIsLoading(false), 300);
