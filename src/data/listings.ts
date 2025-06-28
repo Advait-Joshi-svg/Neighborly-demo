@@ -10,6 +10,7 @@ export type Listing = {
   featured?: boolean;
   lat: number;
   lng: number;
+  image?: string;
 };
 
 export const listings: Listing[] = [
@@ -23,7 +24,8 @@ export const listings: Listing[] = [
     sqft: 550,
     featured: true,
     lat: 30.2672,
-    lng: -97.7431
+    lng: -97.7431,
+    image: "/listings/listing1.jpg"
   },
   {
     id: 2,
@@ -34,7 +36,8 @@ export const listings: Listing[] = [
     bathrooms: 1,
     sqft: 850,
     lat: 41.8781,
-    lng: -87.6298
+    lng: -87.6298,
+    image: "/listings/listing2.jpg"
   },
   {
     id: 3,
@@ -46,7 +49,8 @@ export const listings: Listing[] = [
     sqft: 700,
     featured: true,
     lat: 37.7749,
-    lng: -122.4194
+    lng: -122.4194,
+    image: "/listings/listing3.jpg"
   },
   {
     id: 4,
@@ -57,7 +61,8 @@ export const listings: Listing[] = [
     bathrooms: 1,
     sqft: 600,
     lat: 47.6062,
-    lng: -122.3321
+    lng: -122.3321,
+    image: "/listings/listing4.jpg"
   },
   {
     id: 5,
@@ -68,7 +73,8 @@ export const listings: Listing[] = [
     bathrooms: 2,
     sqft: 1200,
     lat: 39.7392,
-    lng: -104.9903
+    lng: -104.9903,
+    image: "/listings/listing5.jpg"
   },
   {
     id: 6,
@@ -80,7 +86,8 @@ export const listings: Listing[] = [
     sqft: 1100,
     featured: true,
     lat: 40.7128,
-    lng: -74.0060
+    lng: -74.0060,
+    image: "/listings/listing6.jpg"
   },
   {
     id: 7,
@@ -91,7 +98,8 @@ export const listings: Listing[] = [
     bathrooms: 1,
     sqft: 950,
     lat: 45.5152,
-    lng: -122.6784
+    lng: -122.6784,
+    image: "/listings/listing7.jpg"
   },
   {
     id: 8,
@@ -102,7 +110,8 @@ export const listings: Listing[] = [
     bathrooms: 1,
     sqft: 650,
     lat: 25.7617,
-    lng: -80.1918
+    lng: -80.1918,
+    image: "/listings/listing8.jpg"
   }
 ];
 
