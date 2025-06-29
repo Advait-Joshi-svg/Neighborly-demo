@@ -1,6 +1,7 @@
 'use client';
 import { useState, useMemo, ChangeEvent } from 'react';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/navigation';
 import { listings, type Listing } from '../data/listings';
 import Image from 'next/image';
 
@@ -19,8 +20,11 @@ const PriceFilter = dynamic(() => import('../components/PriceFilter').then(mod =
 });
 
 export default function HomePage() {
+  const router = useRouter();
   const [maxPrice, setMaxPrice] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  // Track failed image loads
+  const [failedImages, setFailedImages] = useState<Record<number, boolean>>({});
 
   const filteredListings = useMemo(() => {
     return listings.filter(
@@ -32,6 +36,14 @@ export default function HomePage() {
     setIsLoading(true);
     setMaxPrice(e.target.value);
     setTimeout(() => setIsLoading(false), 300);
+  };
+
+  const handleViewDetails = (id: number) => {
+    router.push(`/listings/${id}`);
+  };
+
+  const handleImageError = (id: number) => {
+    setFailedImages(prev => ({ ...prev, [id]: true }));
   };
 
   return (
@@ -79,14 +91,21 @@ export default function HomePage() {
             >
               <div className="relative h-48 overflow-hidden rounded-md">
                 {listing ? (
-                  <Image
-                    src={`https://source.unsplash.com/random/400x200/?apartment,${listing.id}`}
-                    alt={listing.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    priority={listing.id < 3}
-                  />
+                  failedImages[listing.id] ? (
+                    <div className="h-full w-full bg-gray-100 flex items-center justify-center">
+                      <span className="text-gray-500">Image not available</span>
+                    </div>
+                  ) : (
+                    <Image
+                      src={listing.image}
+                      alt={listing.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      priority={listing.id < 3}
+                      onError={() => handleImageError(listing.id)}
+                    />
+                  )
                 ) : (
                   <div className="h-full w-full bg-gray-200 animate-pulse" />
                 )}
@@ -100,7 +119,10 @@ export default function HomePage() {
                       <span className="mr-3">📍 {listing.location ?? 'Unknown'}</span>
                       <span>🛏️ {listing.bedrooms ?? '?'}</span>
                     </div>
-                    <button className="mt-4 w-full bg-gray-100 hover:bg-gray-200 text-gray-800 py-2 rounded-lg text-sm font-medium transition-colors">
+                    <button 
+                      onClick={() => handleViewDetails(listing.id)}
+                      className="mt-4 w-full bg-gray-100 hover:bg-gray-200 text-gray-800 py-2 rounded-lg text-sm font-medium transition-colors"
+                    >
                       View Details
                     </button>
                   </>
